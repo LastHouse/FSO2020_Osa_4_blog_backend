@@ -1,63 +1,54 @@
 const postsRouter = require('express').Router();
 const Post = require('../models/post');
 
-postsRouter.get('/', (request, response) => {
-  Post.find({}).then((posts) => {
-    response.json(posts.map((post) => post.toJSON()));
-  });
+postsRouter.get('/', async (request, response) => {
+  const posts = await Post.find({});
+  response.json(posts.map((post) => post.toJSON()));
 });
 
-/* postsRouter.get('/:id', (request, response, next) => {
-  Note.findById(request.params.id)
-    .then((note) => {
-      if (note) {
-        response.json(note.toJSON());
-      } else {
-        response.status(404).end();
-      }
-    })
-    .catch((error) => next(error));
-}); */
+postsRouter.get('/:id', async (request, response) => {
+  const post = await Post.findById(request.params.id);
+  if (post) {
+    response.json(post.toJSON());
+  } else {
+    response.status(404).end();
+  }
+});
 
-postsRouter.post('/', (request, response, next) => {
+postsRouter.post('/', async (request, response) => {
   const body = request.body;
 
   const post = new Post({
     title: body.title,
     author: body.author,
     url: body.url,
-    likes: body.likes,
+    likes: body.likes || 0,
   });
 
-  post
-    .save()
-    .then((savedPost) => {
-      response.json(savedPost.toJSON());
-    })
-    .catch((error) => next(error));
+  const savedPost = await post.save();
+
+  response.json(savedPost.toJSON());
 });
 
-/* postsRouter.delete('/:id', (request, response, next) => {
-  Note.findByIdAndRemove(request.params.id)
-    .then(() => {
-      response.status(204).end();
-    })
-    .catch((error) => next(error));
+postsRouter.delete('/:id', async (request, response) => {
+  await Post.findByIdAndRemove(request.params.id);
+  response.status(204).end();
 });
 
-postsRouter.put('/:id', (request, response, next) => {
+postsRouter.put('/:id', async (request, response) => {
   const body = request.body;
 
-  const note = {
-    content: body.content,
-    important: body.important,
+  const post = {
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes: body.likes,
   };
 
-  Note.findByIdAndUpdate(request.params.id, note, { new: true })
-    .then((updatedNote) => {
-      response.json(updatedNote.toJSON());
-    })
-    .catch((error) => next(error));
-}); */
+  const updatedPost = await Post.findByIdAndUpdate(request.params.id, post, {
+    new: true,
+  });
+  response.json(updatedPost.toJSON());
+});
 
 module.exports = postsRouter;

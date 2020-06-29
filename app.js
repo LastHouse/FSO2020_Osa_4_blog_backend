@@ -1,6 +1,7 @@
 const config = require('./utils/config');
 const express = require('express');
 const app = express();
+require('express-async-errors');
 const cors = require('cors');
 const notesRouter = require('./controllers/posts');
 const middleware = require('./utils/middleware');
@@ -22,7 +23,7 @@ mongoose
   });
 
 app.use(cors());
-//app.use(express.static('build'));
+app.use(express.static('build'));
 app.use(express.json());
 app.use(middleware.requestLogger);
 
