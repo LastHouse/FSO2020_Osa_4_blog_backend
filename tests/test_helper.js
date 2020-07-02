@@ -1,4 +1,5 @@
 const Post = require('../models/post');
+const User = require('../models/user');
 
 const initialPosts = [
   {
@@ -16,14 +17,14 @@ const initialPosts = [
 ];
 
 const nonExistingId = async () => {
-  const note = new Post({
+  const post = new Post({
     title: 'will remove this soon',
     url: 'http://localhost:3001/',
   });
-  await note.save();
-  await note.remove();
+  await post.save();
+  await post.remove();
 
-  return note._id.toString();
+  return post._id.toString();
 };
 
 const postsInDb = async () => {
@@ -31,8 +32,14 @@ const postsInDb = async () => {
   return posts.map((post) => post.toJSON());
 };
 
+const usersInDb = async () => {
+  const users = await User.find({});
+  return users.map((u) => u.toJSON());
+};
+
 module.exports = {
   initialPosts,
   nonExistingId,
   postsInDb,
+  usersInDb,
 };
