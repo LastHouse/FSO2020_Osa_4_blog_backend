@@ -16,7 +16,8 @@
     "eslint": "^7.1.0",
     "jest": "^26.0.1",
     "nodemon": "^2.0.4",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "lodash": ">=4.17.19"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -27,7 +28,8 @@
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.17",
-    "mongoose-unique-validator": "^2.0.3"
+    "mongoose-unique-validator": "^2.0.3",
+    "lodash": ">=4.17.19"
   },
   "jest": {
     "testEnvironment": "node"
