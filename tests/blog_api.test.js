@@ -16,6 +16,7 @@ describe('when there is initially some posts saved', () => {
     const passwordHash = await bcrypt.hash('sekret', 10);
     const user = new User({
       username: 'root',
+      name: 'Weird Beard',
       passwordHash,
     });
 
