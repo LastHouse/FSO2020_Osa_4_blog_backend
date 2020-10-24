@@ -37,6 +37,22 @@ postsRouter.post('/', async (request, response) => {
   response.json(savedPost);
 });
 
+postsRouter.post('/:id/comments', async (request, response) => {
+  /*   const decodedToken = jwt.verify(request.token, process.env.SECRET);
+
+  if (!request.token || !decodedToken.id) {
+    return response.status(401).json({ error: 'token missing or invalid' });
+  } */
+
+  const post = await Post.findById(request.params.id);
+  const comment = request.body.comments;
+  post.comments = post.comments.concat(comment);
+
+  await post.save();
+
+  response.json(post);
+});
+
 postsRouter.delete('/:id', async (request, response) => {
   const decodedToken = jwt.verify(request.token, process.env.SECRET);
 
