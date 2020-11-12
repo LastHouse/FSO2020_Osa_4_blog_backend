@@ -12,7 +12,7 @@ const blogSchema = new mongoose.Schema({
     required: true,
   },
   likes: Number,
-  comments: [String],
+  comments: [{ type: String, minlenght: 3 }],
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

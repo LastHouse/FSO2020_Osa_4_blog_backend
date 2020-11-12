@@ -38,7 +38,10 @@ postsRouter.post('/', async (request, response) => {
 });
 
 postsRouter.post('/:id/comments', async (request, response) => {
-  const post = await Post.findById(request.params.id);
+  const post = await Post.findById(request.params.id).populate('user', {
+    username: 1,
+    name: 1,
+  });
   const comment = request.body.comments;
   post.comments = post.comments.concat(comment);
 
