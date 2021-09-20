@@ -14,26 +14,24 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "bl": ">=2.2.1",
-    "eslint": "^7.1.0",
-    "jest": "^26.0.1",
-    "lodash": ">=4.17.19",
-    "nodemon": "^2.0.4",
-    "redux-devtools-extension": "^2.13.8",
+    "bl": "^5.0.0",
+    "eslint": "^7.32.0",
+    "jest": "^26.6.3",
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.12",
+    "redux-devtools-extension": "^2.13.9",
     "supertest": "^4.0.2"
   },
   "dependencies": {
-    "bcrypt": "^5.0.0",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
-    "cross-env": "^7.0.2",
-    "dotenv": "^8.2.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.6.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.17",
-    "mongoose-unique-validator": "^2.0.3",
-    "lodash": ">=4.17.19",
-    "bl": ">=2.2.1"
+    "mongoose": "^5.13.9",
+    "mongoose-unique-validator": "^2.0.3"
   },
   "jest": {
     "testEnvironment": "node"
